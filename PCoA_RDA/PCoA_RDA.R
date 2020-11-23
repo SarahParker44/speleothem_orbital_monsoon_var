@@ -215,7 +215,7 @@ COA_dt$region <- factor(COA_dt$region, c("ISM","EAM","IAM","SW-SAM","NE-SAM","CA
 palette <- c("#FF5722","#42D4F4","#FFA000","#F032E6","#8CBD00","#4363d8","#a9a9a9") # custom palette for regions
 
 # Plot PCoA results
-p1 <- ggplot() + geom_point(data = COA_dt, aes(x = PCoA1, y = PCoA2, col = region, shape = time), size = 1) +
+p1 <- ggplot() + geom_point(data = COA_dt, aes(x = PCoA1, y = PCoA2, col = region, shape = time), size = 1.5) +
   scale_color_manual(values = palette, guide = F) +
   theme_bw() + xlab("PCoA 1") +
   ylab("PCoA 2") +
@@ -226,7 +226,7 @@ p1 <- ggplot() + geom_point(data = COA_dt, aes(x = PCoA1, y = PCoA2, col = regio
         legend.key.size = unit(0.8, "lines"))
 
 # Create legend as individual plot
-px <- ggplot() + geom_point(data = COA_dt, aes(x = PCoA1, y = PCoA2, col = region), size = 1) +
+px <- ggplot() + geom_point(data = COA_dt, aes(x = PCoA1, y = PCoA2, col = region), size = 1.5) +
   scale_color_manual(values = palette, guide = guide_legend(title.position = "top", nrow = 1)) +
   theme(legend.box = "horizontal", legend.direction = "horizontal", legend.title = element_blank(), legend.text = element_text(size = 8), legend.key.width = unit(1, "cm"),
         legend.margin = margin(t = 0, r = 5, b = 0, l = 5, unit = "cm"), legend.key = element_rect(fill = NA)) +
@@ -264,7 +264,7 @@ scor <- scores(pcoa.rda,
 site_scor <- data.frame(scor$sites)
 
 p2 <- ggplot() +
-  geom_point(site_scor, mapping = aes(x = RDA1, y = RDA2, col = COA_dt$region), size = 0.5) +
+  geom_point(site_scor, mapping = aes(x = RDA1, y = RDA2, col = COA_dt$region), size = 1.5) +
   scale_colour_manual(values = palette) + theme_bw() +
   geom_vline(mapping = aes(xintercept = 0), lty = 2, size = 0.2) + geom_hline(mapping = aes(yintercept = 0), lty = 2, size = 0.2)
 
@@ -311,6 +311,7 @@ p <- plot_grid(p, legend, nrow = 2, rel_heights = c(1,0.1), align = "v", axis = 
 print(p)
 
 # export
-Cairo(file = "C:/Users/sarah/Documents/PhD/monsoon_paper/svg_figs/test_pcoa.png", type = "png", units = "cm", width = 16, height = 8, dpi = 300)
+#Cairo(file = "C:/Users/sarah/Documents/PhD/monsoon_paper/svg_figs/test_pcoa.pdf", type = "pdf", units = "cm", width = 16, height = 8)
+pdf("C:/Users/sarah/Documents/PhD/monsoon_paper/svg_figs/test_pcoa.pdf", width = 16/2.54, height = 8/2.54)
 print(p)
 dev.off()

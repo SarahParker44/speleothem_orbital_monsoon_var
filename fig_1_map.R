@@ -28,11 +28,13 @@ boxplot_sites <- read.csv("boxplot_sites.csv")
 composite_sites <- read.csv("composite_entities.csv")
 LIG_sites <- read.csv("LIG_entities.csv")
 
+length(unique(c(PCoA_sites$entity_id, boxplot_sites$entity_id, composite_sites$entity_id, LIG_sites$entity_id)))
+
 
 # edit data and merge into 1 df
 boxplots <- unique(boxplot_sites[,-c(5:7)]); boxplots$boxplot <- T
 comps <- unique(composite_sites[,-c(3:4,7:8)]); comps$composite <- T
-PCoA <- unique(PCoA_sites[,-c(3,6)]); PCoA$PCoA <- T
+PCoA <- unique(PCoA_sites[,-c(3,4,7,8)]); PCoA$PCoA <- T
 
 dat <- full_join(boxplots, comps, by = c("site_id","site_name","latitude","longitude")) # merge
 dat <- full_join(dat, PCoA, by = c("site_id","site_name","latitude","longitude"))
