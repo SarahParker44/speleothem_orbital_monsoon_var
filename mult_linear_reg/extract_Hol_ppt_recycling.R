@@ -11,7 +11,7 @@ library(geosphere)
 
 # Load mask
 
-ncin <- nc_open("data/0ka_clim.nc")
+ncin <- nc_open("data/GISS_landmask.nc")
 mask <- ncvar_get(ncin, "frac_land")
 mask <- ifelse(mask > 50, 1, NA) # 1  = land grids, NA = ocean grids
 

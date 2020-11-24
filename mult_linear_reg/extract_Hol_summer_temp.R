@@ -31,7 +31,7 @@ for (i in 1:12){ # each month
 }
 
 # Get lon, lat and mask data
-ncin <- nc_open("C:/Users/sarah/Documents/PhD/analyses/data/0ka_clim.nc")
+ncin <- nc_open("data/GISS_landmask.nc")
 lon <- ncvar_get(ncin, "lon"); lat <- ncvar_get(ncin, "lat")
 mask <- ncvar_get(ncin, "frac_land")
 mask <- ifelse(mask < 50, 1, NA) # 1  = ocean grids, NA = land grids
