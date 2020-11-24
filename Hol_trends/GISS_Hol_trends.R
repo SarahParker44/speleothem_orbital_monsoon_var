@@ -10,35 +10,25 @@ library(tidyr)
 library(dplyr)
 
 # Load GISS wiso data
-wiso_ls <- list()
-for (i in c(1:6,9)){
-  # load nc file
-  filename <- paste("data/", i, "ka_wiso_100yr.nc", sep = "")
-  ncin <- nc_open(filename)
-  # load d18O
-  wiso <- ncvar_get(ncin, "H2O18_in_prec")
-  # Replace fill values with NA
-  fillvalue <- ncatt_get(ncin,"H2O18_in_prec","_FillValue")
-  wiso[wiso==fillvalue$value] <- NA
-  #save
-  wiso_ls[[as.character(i)]] <- wiso
-  #close
-  nc_close(ncin); rm(ncin)
-}
-
-# Load lon, lat and PI wiso data
-ncin <- nc_open("C:/Users/sarah/Documents/PhD/analyses/data/0ka_wiso_100yr.nc")
-lon <- ncvar_get(ncin, "lon"); lat <- ncvar_get(ncin, "lat"); nlon <- length(lon)
-wiso_0ka <- ncvar_get(ncin, "H2O18_in_prec")
-nc_close(ncin)
+ncin <- nc_open("data/GISS_wiso.nc")
+wiso <- ncvar_get(ncin, "H2O18_in_prec")
+# Replace fill values with NA
+fillvalue <- ncatt_get(ncin,"H2O18_in_prec","_FillValue")
+wiso[wiso==fillvalue$value] <- NA
+lon <- ncvar_get(ncin, "lon"); lat <- ncvar_get(ncin, "lat")
+nc_close(ncin); rm(ncin)
 
 
 # Calculate anomalies to PI
-wiso_ls <- lapply(wiso_ls, function(x) x-wiso_0ka)
+wiso <- apply(wiso, c(1,2), function(x) x-wiso[,,1])
+for (i in 1:dim(wiso)[3]){
+  wiso[,,i] <- wiso[,,i] - wiso[,,1]
+}
+wiso <- wiso[,,-1]
 
 
 # select land grids (>50%land)
-ncin <- nc_open("C:/Users/sarah/Documents/PhD/analyses/data/0ka_clim.nc")
+ncin <- nc_open("data/GISS_landmask.nc")
 mask <- ncvar_get(ncin, "frac_land")
 nc_close(ncin)
 
