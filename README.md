@@ -19,6 +19,8 @@ http://dx.doi.org/10.17864/1947.242
 #### ECHAM
 https://doi.org/10.1594/PANGAEA.902347
 https://doi.pangaea.de/10.1594/PANGAEA.879229
+#### GISS
+NetCDF files included in "Data" file of this repository. 
 
 ## Analyses
 
@@ -55,3 +57,5 @@ Extract summer surface winds: “extract_Hol_summer_wdir.R”
 Calculate precipitation recycling ratio over regions: “extract_Hol_ppt_recycling.R”
 Multiple linear regression analysis carried out in “mult_linear_reg.R”, using variables, saved into csv. Files, from the “Extract_Hol_...R” files. Results from analysis are plotted as partial residual plots and exported as a pdf file. 
 
+### Simulated d18Oprecip versus observed d18Ospel (supplementary figures)
+Plotting simulated d18Oprecip with d18Ospel, converted to drip water equivalent, % agreement between model and observations calculated, using "Supp_figs.R", requires connection to SISALv2 database in MySQL.
