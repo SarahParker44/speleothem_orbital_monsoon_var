@@ -41,7 +41,7 @@ Calculate mean annual precipitation and temperature, annual precipitation-weight
 Calculate mean across time periods (30 years long): “Step2_ECHAM_ave_MH_LGM.m”
 Calculate anomalies to control run and resample LIG to same grid resolution as MH/LGM: “Step3_calc_anom.m”
 Extraction of ECHAM d18Oprecip, temperature and precipitation around each speleothem site used in boxplot analysis, using distance weighted means +/-3 degrees: “Extract_ppt_temp_d18O_boxplots.R”. Uses “ECHAM_dat.mat” file from preprocessing steps. 
-Plot results in boxplots, generating figure 3 in “mult_axes_boxplots”. Uses output from “Extract_ppt_temp_d18O_boxplots.R”. 
+Plot results in boxplots, generating figure 3 in “plot_boxplots.R”. Uses output from “Extract_ppt_temp_d18O_boxplots.R”. 
 
 ### Holocene evolution (section 2.5) and generation of Figure 4
 Regional speleothem d18O composites for the Holocene are produced, by calculating Z-scores, binning, bootstrap resampling by site (to obtain confidence intervals) and lowess smoothing. Smoothed fit and confidence intervals for each monsoon region are generated and saved to a .csv file, using “region_spel_composites.R”. Requires connection to SISALv2 database in MySQL.
