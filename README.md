@@ -15,7 +15,7 @@ This repository contains the codes used for the statistical analyses and product
 
 ### Data availability: 
 #### SISAL 
-http://dx.doi.org/10.17864/1947.242
+http://dx.doi.org/10.17864/1947.256
 #### ECHAM
 https://doi.org/10.1594/PANGAEA.902347
 https://doi.pangaea.de/10.1594/PANGAEA.879229
